@@ -4,63 +4,86 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Pongal</title>
+
 <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: #ffebc4;
+    background: linear-gradient(135deg, #ffd27f, #ffefc3);
+    font-family: "Poppins", sans-serif;
     text-align: center;
   }
   .card {
-    background: #fffbe6;
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.2);
-    animation: pop 1s ease-in-out;
+    background: white;
+    padding: 25px 35px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    animation: fadeIn 1s;
   }
   h1 {
-    color: #e06b00;
+    font-size: 30px;
+    color: #d36800;
   }
-  .btn {
+  #wish {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #444;
+    min-height: 60px;
+  }
+  button {
     margin-top: 15px;
-    padding: 10px 18px;
+    padding: 10px 20px;
     border: none;
-    background: #ff9f1c;
+    background: #ff9900;
     color: white;
-    border-radius: 8px;
+    font-size: 18px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
   }
-  @keyframes pop {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+  button:active {
+    transform: scale(0.95);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
 </head>
 <body>
 
 <div class="card">
-  <h1 id="wish">Happy Pongal 🎉</h1>
-  <p>May this festival bring joy, prosperity and good harvest! 🌾✨</p>
-  <button class="btn" onclick="changeWish()">Tap for a new wish</button>
+  <h1>🌾 Happy Pongal 🌾</h1>
+  <p id="wish">May this festival bring joy, success & positivity!</p>
+  <button onclick="shuffleWish()">Tap for New Wish ✨</button>
 </div>
 
 <script>
   const wishes = [
-    "Happy Pongal! 🌾✨",
-    "Wishing you prosperity and happiness! 🌞",
-    "May your life overflow with sweetness like Pongal rice 🍚💛",
-    "Let this Pongal bring new beginnings and success! 🎇"
+    "🌾 May your Pongal be filled with joy and prosperity!",
+    "🍚 Wishing you a sweet and successful year ahead!",
+    "🌞 May this harvest festival bring sunshine to your life!",
+    "🔥 Let this Pongal burn away worries and bring new hope!",
+    "🎉 Celebrate the season of harvest with smiles and love!",
+    "🌈 May your home be filled with peace and happiness!"
   ];
-  function changeWish() {
-    const wishText = document.getElementById("wish");
-    wishText.innerText = wishes[Math.floor(Math.random() * wishes.length)];
+
+  function shuffleWish() {
+    const wishBox = document.getElementById("wish");
+    wishBox.style.opacity = 0;
+    setTimeout(() => {
+      wishBox.innerText = wishes[Math.floor(Math.random() * wishes.length)];
+      wishBox.style.opacity = 1;
+    }, 250);
   }
+
+  // Auto change every 4 seconds
+  setInterval(shuffleWish, 4000);
 </script>
 
 </body>
